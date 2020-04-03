@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".info_neighbour"
+    tools:showIn="@layout/activity_info_neighbour">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/activity_info_neighbour_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:elevation="20dp"
+            >
+
+            <TextView
+                android:id="@+id/activity_info_neighbour_name2_tkt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Caroline"
+                android:textSize="24dp"
+                android:padding="15dp"/>
+            <TextView
+                android:id="@+id/activity_info_neighbour_adress_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="Saint-Pierre-du-Mont ; 5km"
+                android:textSize="14dp"
+                android:drawableStart="@drawable/ic_place_24px"
+                android:drawablePadding="20dp"
+                android:drawableTint="#FF85BA"/>
+            <TextView
+                android:id="@+id/activity_info_neighbour_phone_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="+33 6 86 57 90 14"
+                android:textSize="14dp"
+                android:drawableStart="@drawable/ic_local_phone_24px"
+                android:drawablePadding="20dp"
+                android:drawableTint="#FF85BA"/>
+            <TextView
+                android:id="@+id/activity_info_neightbour_web_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="www.facebook.com/caroline"
+                android:textSize="14dp"
+                android:drawableStart="@drawable/ic_language_24px"
+                android:drawablePadding="20dp"
+                android:drawableTint="#FF85BA"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/activity_info_neighbour_about_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical"
+            android:elevation="20dp">
+
+            <TextView
+                android:id="@+id/activity_info_neighbour_about_tittle_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="A propos de moi"
+                android:textSize="22dp"/>
+            <TextView
+                android:id="@+id/activity_info_neighbour_about_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot.."
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
