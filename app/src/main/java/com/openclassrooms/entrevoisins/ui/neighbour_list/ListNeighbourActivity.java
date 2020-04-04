@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.info_neighbour;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,5 +43,10 @@ public class ListNeighbourActivity extends AppCompatActivity {
     @OnClick(R.id.add_neighbour)
     void addNeighbour() {
         AddNeighbourActivity.navigate(this);
+    }
+
+    @OnClick(R.id.info_neighbour)
+    void infoNeighbour() {
+        info_neighbour.navigate(this);
     }
 }
