@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.openclassrooms.entrevoisins.di.DI;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class info_neighbour extends AppCompatActivity {
 
-
+    private ImageView mAvatar;
     private TextView mName;
     private TextView mAdress;
     private TextView mPhone;
@@ -36,6 +37,7 @@ public class info_neighbour extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mAvatar = (ImageView) findViewById(R.id.activity_info_neighbour_avatar_img);
         mName = (TextView) findViewById(R.id.activity_info_neighbour_name2_tkt);
         mAdress = (TextView) findViewById(R.id.activity_info_neighbour_adress_txt);
         mPhone = (TextView) findViewById(R.id.activity_info_neighbour_phone_txt);
