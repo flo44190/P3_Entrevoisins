@@ -7,8 +7,5 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/menu_info_neighbour_back_btn"
-        app:srcCompat = "@drawable/ic_keyboard_backspace_24px"/>
 
 </menu>

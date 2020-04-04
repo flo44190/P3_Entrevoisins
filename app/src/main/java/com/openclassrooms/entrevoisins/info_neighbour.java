@@ -1,5 +1,6 @@
 package com.openclassrooms.entrevoisins;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,15 +9,20 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import java.util.List;
+
 
 public class info_neighbour extends AppCompatActivity {
 
@@ -37,21 +43,30 @@ public class info_neighbour extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mAvatar = (ImageView) findViewById(R.id.activity_info_neighbour_avatar_img);
         mName = (TextView) findViewById(R.id.activity_info_neighbour_name2_tkt);
         mAdress = (TextView) findViewById(R.id.activity_info_neighbour_adress_txt);
         mPhone = (TextView) findViewById(R.id.activity_info_neighbour_phone_txt);
         mWeb = (TextView) findViewById(R.id.activity_info_neightbour_web_txt);
         mAbout = (TextView) findViewById(R.id.activity_info_neighbour_about_txt);
+
         mApiService = DI.getNeighbourApiService();
         initList();
         DisplayNeighbour(mNeighbours.get(6));
 
+    }
 
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 
     private void DisplayNeighbour (Neighbour neighbour){
-        mAvatar.setImageBitmap(neighbour.getAvatarUrl());
+        Glide.with(this).load(neighbour.getAvatarUrl()).into(mAvatar);
+        setTitle(neighbour.getName());
         mName.setText(neighbour.getName());
         mAdress.setText(neighbour.getAddress());
         mPhone.setText(neighbour.getPhoneNumber());

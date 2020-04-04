@@ -13,10 +13,7 @@
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
-        <ImageView
-            android:id="@+id/activity_info_neighbour_avatar_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -26,6 +23,13 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/activity_info_neighbour_avatar_img"
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:scaleType="fitStart"/>
+
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -44,9 +48,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="#E5E5E5"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        android:backgroundTint="#E5E5E5"
         app:srcCompat="@drawable/ic_star_yellow_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
