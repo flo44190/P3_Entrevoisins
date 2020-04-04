@@ -32,8 +32,7 @@ public class NeighbourFragment extends Fragment {
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
-    // FOR DESIGN
-    @BindView(R.id.list_neighbours) RecyclerView recyclerView; // 1 - Declare RecyclerView
+    @BindView(R.id.list_neighbours) RecyclerView recyclerView;
 
 
     /**
@@ -99,11 +98,7 @@ public class NeighbourFragment extends Fragment {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
     }
-    // -----------------
-    // ACTION
-    // -----------------
 
-    // 1 - Configure item click on RecyclerView
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(mRecyclerView, R.layout.fragment_neighbour)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
