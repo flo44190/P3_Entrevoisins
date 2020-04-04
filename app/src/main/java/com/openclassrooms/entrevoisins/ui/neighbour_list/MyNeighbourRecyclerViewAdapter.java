@@ -29,6 +29,10 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         mNeighbours = items;
     }
 
+    public Neighbour getUser(int position){
+        return this.mNeighbours.get(position);
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
