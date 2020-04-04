@@ -51,6 +51,7 @@ public class info_neighbour extends AppCompatActivity {
     }
 
     private void DisplayNeighbour (Neighbour neighbour){
+        mAvatar.setImageBitmap(neighbour.getAvatarUrl());
         mName.setText(neighbour.getName());
         mAdress.setText(neighbour.getAddress());
         mPhone.setText(neighbour.getPhoneNumber());
