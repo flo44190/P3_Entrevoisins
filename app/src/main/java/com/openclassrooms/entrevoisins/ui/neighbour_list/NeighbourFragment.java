@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -13,11 +14,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.controler.info_neighbour;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.ItemClickSupport;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+
+import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -32,8 +36,9 @@ public class NeighbourFragment extends Fragment {
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
-    private MyNeighbourRecyclerViewAdapter adapter;
     @BindView(R.id.list_neighbours) RecyclerView recyclerView;
+
+    public static final String EXTRA_BUNDLE_POSITION = "EXTRA_BUNDLE_POSITION";
 
 
     /**
@@ -44,6 +49,7 @@ public class NeighbourFragment extends Fragment {
         NeighbourFragment fragment = new NeighbourFragment();
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,15 +106,15 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
-    private void configureOnClickRecyclerView() {
+    public void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(mRecyclerView, R.layout.fragment_neighbour)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        // 1 - Get user from adapter
-                        Neighbour user = getUser(position);
-                        // 2 - Show result in a Toast
-                        Toast.makeText(getContext(), "You clicked on user : "+user.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent (getActivity(),info_neighbour.class);
+
+                        intent.putExtra(EXTRA_BUNDLE_POSITION,position);
+                        startActivity(intent);
                     }
                 });
     }

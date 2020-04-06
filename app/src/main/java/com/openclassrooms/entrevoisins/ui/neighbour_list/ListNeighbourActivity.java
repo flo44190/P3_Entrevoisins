@@ -44,8 +44,4 @@ public class ListNeighbourActivity extends AppCompatActivity {
         AddNeighbourActivity.navigate(this);
     }
 
-    @OnClick(R.id.info_neighbour)
-    void infoNeighbour() {
-        info_neighbour.navigate(this);
-    }
 }

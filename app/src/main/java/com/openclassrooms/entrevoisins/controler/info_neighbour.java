@@ -15,6 +15,7 @@ import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourFragment;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class info_neighbour extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Intent intent = getIntent();
 
         mAvatar = (ImageView) findViewById(R.id.activity_info_neighbour_avatar_img);
         mName = (TextView) findViewById(R.id.activity_info_neighbour_name2_tkt);
@@ -49,7 +51,11 @@ public class info_neighbour extends AppCompatActivity {
 
         mApiService = DI.getNeighbourApiService();
         initList();
-        DisplayNeighbour(mNeighbours.get(2));
+
+        if (intent != null){
+            int position = intent.getIntExtra(NeighbourFragment.EXTRA_BUNDLE_POSITION,0);
+            DisplayNeighbour(mNeighbours.get(position));
+        }
 
     }
 
@@ -72,8 +78,4 @@ public class info_neighbour extends AppCompatActivity {
         mNeighbours = mApiService.getNeighbours();
     }
 
-    public static void navigate(Activity activity) {
-        Intent intent = new Intent(activity, info_neighbour.class);
-        ActivityCompat.startActivity(activity, intent, null);
-    }
 }
