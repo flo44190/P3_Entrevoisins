@@ -1,10 +1,8 @@
 package com.openclassrooms.entrevoisins.controler;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
@@ -18,6 +16,7 @@ import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourFragment;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class info_neighbour extends AppCompatActivity {
@@ -39,7 +38,7 @@ public class info_neighbour extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
 
         mAvatar = (ImageView) findViewById(R.id.activity_info_neighbour_avatar_img);

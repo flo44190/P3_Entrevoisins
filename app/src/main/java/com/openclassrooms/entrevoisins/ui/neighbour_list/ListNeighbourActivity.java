@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.controler.info_neighbour;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +22,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
     @BindView(R.id.container)
     ViewPager mViewPager;
 
-    ListNeighbourPagerAdapter mPagerAdapter;
+    private ListNeighbourPagerAdapter mPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

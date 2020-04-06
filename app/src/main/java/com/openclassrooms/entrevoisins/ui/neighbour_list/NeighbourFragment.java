@@ -7,11 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.controler.info_neighbour;
@@ -20,8 +18,6 @@ import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.ItemClickSupport;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
-
-import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -46,8 +42,7 @@ public class NeighbourFragment extends Fragment {
      * @return @{@link NeighbourFragment}
      */
     public static NeighbourFragment newInstance() {
-        NeighbourFragment fragment = new NeighbourFragment();
-        return fragment;
+        return new NeighbourFragment();
     }
 
 
@@ -106,7 +101,7 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
-    public void configureOnClickRecyclerView() {
+    private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(mRecyclerView, R.layout.fragment_neighbour)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
@@ -117,10 +112,6 @@ public class NeighbourFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
-    }
-
-    public Neighbour getUser(int position){
-        return this.mNeighbours.get(position);
     }
 
 }
