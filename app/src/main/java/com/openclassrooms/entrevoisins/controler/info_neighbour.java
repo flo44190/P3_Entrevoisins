@@ -72,6 +72,7 @@ public class info_neighbour extends AppCompatActivity {
         mAdress.setText(neighbour.getAddress());
         mPhone.setText(neighbour.getPhoneNumber());
         mAbout.setText(neighbour.getAboutMe());
+        mWeb.setText(neighbour.getWeb());
     }
 
     private void initList() {
