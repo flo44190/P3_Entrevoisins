@@ -32,6 +32,7 @@ public class NeighbourFragment extends Fragment {
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
+    private MyNeighbourRecyclerViewAdapter adapter;
     @BindView(R.id.list_neighbours) RecyclerView recyclerView;
 
 
@@ -104,9 +105,16 @@ public class NeighbourFragment extends Fragment {
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                    System.out.println("On click" +position);
+                        // 1 - Get user from adapter
+                        Neighbour user = getUser(position);
+                        // 2 - Show result in a Toast
+                        Toast.makeText(getContext(), "You clicked on user : "+user.getName(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public Neighbour getUser(int position){
+        return this.mNeighbours.get(position);
     }
 
 }
