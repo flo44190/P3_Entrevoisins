@@ -3,8 +3,11 @@ package com.openclassrooms.entrevoisins.controler;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +21,8 @@ import com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourFragment;
 import java.util.List;
 import java.util.Objects;
 
+import butterknife.OnClick;
+
 
 public class info_neighbour extends AppCompatActivity {
 
@@ -27,6 +32,9 @@ public class info_neighbour extends AppCompatActivity {
     private TextView mPhone;
     private TextView mWeb;
     private TextView mAbout;
+    private int position;
+
+    private FloatingActionButton mFavorites;
 
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
@@ -48,16 +56,27 @@ public class info_neighbour extends AppCompatActivity {
         mWeb = (TextView) findViewById(R.id.activity_info_neightbour_web_txt);
         mAbout = (TextView) findViewById(R.id.activity_info_neighbour_about_txt);
 
+        mFavorites = (FloatingActionButton) findViewById(R.id.activity_info_neighbour_favorites_btn);
+
         mApiService = DI.getNeighbourApiService();
         initList();
 
         /**
          * Recuperation de la position du Neighbour et Affichage
          */
+
         if (intent != null){
-            int position = intent.getIntExtra(NeighbourFragment.EXTRA_BUNDLE_POSITION,0);
+            position = intent.getIntExtra(NeighbourFragment.EXTRA_BUNDLE_POSITION,0);
             DisplayNeighbour(mNeighbours.get(position));
         }
+
+        mFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modifFavories(mNeighbours.get(position));
+                System.out.println();
+            }
+        });
 
     }
 
@@ -68,7 +87,7 @@ public class info_neighbour extends AppCompatActivity {
     }
 
     /**
-     * Afichage dynamique des info utilisateur
+     * Afichage dynamique des infos utilisateurs
      */
 
     private void DisplayNeighbour (Neighbour neighbour){
@@ -88,4 +107,7 @@ public class info_neighbour extends AppCompatActivity {
         mNeighbours = mApiService.getNeighbours();
     }
 
+    public void modifFavories (Neighbour neighbour){
+        mApiService.favoritesNeighbour(neighbour);
+    }
 }

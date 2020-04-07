@@ -28,6 +28,9 @@ public class Neighbour {
     /** About me */
     private String aboutMe;
 
+    /** Favorites */
+    private boolean favorites = false;
+
     /**
      * Constructor
      * @param id
@@ -99,6 +102,14 @@ public class Neighbour {
 
     public void setWeb(String web) {
         this.web = web;
+    }
+
+    public boolean getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(boolean favorites) {
+        this.favorites = favorites;
     }
 
     @Override
