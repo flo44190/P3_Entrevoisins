@@ -101,6 +101,10 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
+    /**
+     * Configuration du click sur le Fragment
+     */
+
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(mRecyclerView, R.layout.fragment_neighbour)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {

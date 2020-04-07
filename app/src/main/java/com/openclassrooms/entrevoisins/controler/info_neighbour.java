@@ -51,6 +51,9 @@ public class info_neighbour extends AppCompatActivity {
         mApiService = DI.getNeighbourApiService();
         initList();
 
+        /**
+         * Recuperation de la position du Neighbour et Affichage
+         */
         if (intent != null){
             int position = intent.getIntExtra(NeighbourFragment.EXTRA_BUNDLE_POSITION,0);
             DisplayNeighbour(mNeighbours.get(position));
@@ -64,6 +67,10 @@ public class info_neighbour extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Afichage dynamique des info utilisateur
+     */
+
     private void DisplayNeighbour (Neighbour neighbour){
         Glide.with(this).load(neighbour.getAvatarUrl()).into(mAvatar);
         setTitle(neighbour.getName());
@@ -74,6 +81,9 @@ public class info_neighbour extends AppCompatActivity {
         mWeb.setText(neighbour.getWeb());
     }
 
+    /**
+     * Init the List of neighbours
+     */
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
     }
