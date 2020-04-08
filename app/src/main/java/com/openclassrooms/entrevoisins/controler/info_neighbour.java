@@ -33,7 +33,6 @@ public class info_neighbour extends AppCompatActivity {
     private TextView mPhone;
     private TextView mWeb;
     private TextView mAbout;
-    private boolean mFavorites;
     private int position;
 
     private FloatingActionButton mFavoritesBtn;
