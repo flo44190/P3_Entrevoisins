@@ -99,6 +99,11 @@ public class info_neighbour extends AppCompatActivity {
         mPhone.setText(neighbour.getPhoneNumber());
         mAbout.setText(neighbour.getAboutMe());
         mWeb.setText(neighbour.getWeb());
+        if (neighbour.getFavorites() == true){
+            mFavoritesBtn.setImageResource(R.drawable.ic_star_yellow_24dp);
+        }else {
+            mFavoritesBtn.setImageResource(R.drawable.ic_star_border_white_24dp);
+        }
     }
 
     /**
