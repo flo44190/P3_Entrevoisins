@@ -30,10 +30,11 @@ import butterknife.BindView;
 public class FavoritesFragment extends Fragment {
 
     private NeighbourApiService mApiService;
-    private List<Neighbour> mNeighbours;
     private List<Neighbour> mFavorites;
     private RecyclerView mRecyclerView;
     @BindView(R.id.list_neighbours) RecyclerView recyclerView;
+
+    public static final String EXTRA_BUNDLE_POSITION = "EXTRA_BUNDLE_POSITION";
 
 
     /**
@@ -109,7 +110,10 @@ public class FavoritesFragment extends Fragment {
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        System.out.println(position);
+                        Intent intent = new Intent (getActivity(),info_neighbour.class);
+
+                        intent.putExtra(EXTRA_BUNDLE_POSITION,position);
+                        startActivity(intent);
                     }
                 });
     }
