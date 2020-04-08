@@ -4,6 +4,7 @@ package com.openclassrooms.entrevoisins.controler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -32,9 +33,10 @@ public class info_neighbour extends AppCompatActivity {
     private TextView mPhone;
     private TextView mWeb;
     private TextView mAbout;
+    private boolean mFavorites;
     private int position;
 
-    private FloatingActionButton mFavorites;
+    private FloatingActionButton mFavoritesBtn;
 
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
@@ -56,7 +58,7 @@ public class info_neighbour extends AppCompatActivity {
         mWeb = (TextView) findViewById(R.id.activity_info_neightbour_web_txt);
         mAbout = (TextView) findViewById(R.id.activity_info_neighbour_about_txt);
 
-        mFavorites = (FloatingActionButton) findViewById(R.id.activity_info_neighbour_favorites_btn);
+        mFavoritesBtn = (FloatingActionButton) findViewById(R.id.activity_info_neighbour_favorites_btn);
 
         mApiService = DI.getNeighbourApiService();
         initList();
@@ -70,11 +72,10 @@ public class info_neighbour extends AppCompatActivity {
             DisplayNeighbour(mNeighbours.get(position));
         }
 
-        mFavorites.setOnClickListener(new View.OnClickListener() {
+        mFavoritesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 modifFavories(mNeighbours.get(position));
-                System.out.println();
             }
         });
 
@@ -109,5 +110,10 @@ public class info_neighbour extends AppCompatActivity {
 
     public void modifFavories (Neighbour neighbour){
         mApiService.favoritesNeighbour(neighbour);
+        if (neighbour.getFavorites() == true){
+            mFavoritesBtn.setImageResource(R.drawable.ic_star_yellow_24dp);
+        }else {
+            mFavoritesBtn.setImageResource(R.drawable.ic_star_border_white_24dp);
+        }
     }
 }

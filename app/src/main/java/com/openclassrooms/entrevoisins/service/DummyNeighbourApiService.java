@@ -47,10 +47,10 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     public void favoritesNeighbour (Neighbour neighbour){
         if (neighbour.getFavorites()==false){
                 neighbour.setFavorites(true);
-                Log.i("DATA", "favoritesNeighbour: modification favoris true"+neighbour.getName());}
+                Log.i("DATA", "favoritesNeighbour: modification favoris true "+neighbour.getName());}
         else {
             neighbour.setFavorites(false);
-            Log.i("DATA", "favoritesNeighbour: modification favoris false" +neighbour.getName());
+            Log.i("DATA", "favoritesNeighbour: modification favoris false " +neighbour.getName());
         }
 
     }
