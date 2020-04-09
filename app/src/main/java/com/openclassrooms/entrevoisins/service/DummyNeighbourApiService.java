@@ -5,7 +5,6 @@ import android.util.Log;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -56,7 +55,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
      */
     @Override
     public void favoritesNeighbour (Neighbour neighbour){
-        if (neighbour.getFavorites()==false){
+        if (!neighbour.getFavorites()){
                 neighbour.setFavorites(true);
                 favorites.add(neighbour);
                 Log.i("DATA", "favoritesNeighbour: modification favoris true "+neighbour.getName());}

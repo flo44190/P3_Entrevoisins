@@ -30,7 +30,6 @@ import butterknife.BindView;
 public class NeighbourFragment extends Fragment {
 
     private NeighbourApiService mApiService;
-    private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
     @BindView(R.id.list_neighbours) RecyclerView recyclerView;
 
@@ -69,8 +68,8 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        List<Neighbour> neighbours = mApiService.getNeighbours();
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(neighbours));
     }
 
     @Override
@@ -107,14 +106,11 @@ public class NeighbourFragment extends Fragment {
 
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(mRecyclerView, R.layout.fragment_neighbour)
-                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-                    @Override
-                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        Intent intent = new Intent (getActivity(),info_neighbour.class);
+                .setOnItemClickListener(position -> {
+                    Intent intent = new Intent (getActivity(),info_neighbour.class);
 
-                        intent.putExtra(EXTRA_BUNDLE_POSITION,position);
-                        startActivity(intent);
-                    }
+                    intent.putExtra(EXTRA_BUNDLE_POSITION,position);
+                    startActivity(intent);
                 });
     }
 

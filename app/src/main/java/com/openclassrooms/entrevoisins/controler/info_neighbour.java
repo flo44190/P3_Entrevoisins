@@ -4,10 +4,8 @@ package com.openclassrooms.entrevoisins.controler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,8 +19,6 @@ import com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourFragment;
 
 import java.util.List;
 import java.util.Objects;
-
-import butterknife.OnClick;
 
 
 public class info_neighbour extends AppCompatActivity {
@@ -44,41 +40,36 @@ public class info_neighbour extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_neighbour);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
 
-        mAvatar = (ImageView) findViewById(R.id.activity_info_neighbour_avatar_img);
-        mName = (TextView) findViewById(R.id.activity_info_neighbour_name2_tkt);
-        mAdress = (TextView) findViewById(R.id.activity_info_neighbour_adress_txt);
-        mPhone = (TextView) findViewById(R.id.activity_info_neighbour_phone_txt);
-        mWeb = (TextView) findViewById(R.id.activity_info_neightbour_web_txt);
-        mAbout = (TextView) findViewById(R.id.activity_info_neighbour_about_txt);
+        mAvatar = findViewById(R.id.activity_info_neighbour_avatar_img);
+        mName = findViewById(R.id.activity_info_neighbour_name2_tkt);
+        mAdress = findViewById(R.id.activity_info_neighbour_adress_txt);
+        mPhone = findViewById(R.id.activity_info_neighbour_phone_txt);
+        mWeb = findViewById(R.id.activity_info_neightbour_web_txt);
+        mAbout = findViewById(R.id.activity_info_neighbour_about_txt);
 
-        mFavoritesBtn = (FloatingActionButton) findViewById(R.id.activity_info_neighbour_favorites_btn);
+        mFavoritesBtn = findViewById(R.id.activity_info_neighbour_favorites_btn);
 
         mApiService = DI.getNeighbourApiService();
         initList();
-
-        /**
-         * Recuperation de la position du Neighbour et Affichage
-         */
 
         if (intent != null){
             position = intent.getIntExtra(NeighbourFragment.EXTRA_BUNDLE_POSITION,0);
             DisplayNeighbour(mNeighbours.get(position));
         }
 
-        mFavoritesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                modifFavories(mNeighbours.get(position));
-            }
-        });
+        mFavoritesBtn.setOnClickListener(view -> modifFavories(mNeighbours.get(position)));
 
     }
+
+    /**
+     * Fleche retour
+     */
 
     @Override
     public boolean onSupportNavigateUp(){
@@ -98,7 +89,7 @@ public class info_neighbour extends AppCompatActivity {
         mPhone.setText(neighbour.getPhoneNumber());
         mAbout.setText(neighbour.getAboutMe());
         mWeb.setText(neighbour.getWeb());
-        if (neighbour.getFavorites() == true){
+        if (neighbour.getFavorites()){
             mFavoritesBtn.setImageResource(R.drawable.ic_star_yellow_24dp);
         }else {
             mFavoritesBtn.setImageResource(R.drawable.ic_star_border_white_24dp);
@@ -111,10 +102,13 @@ public class info_neighbour extends AppCompatActivity {
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
     }
+    /**
+     * Ajout a la list Favoris et modification du bouton
+     */
 
-    public void modifFavories (Neighbour neighbour){
+    private void modifFavories(Neighbour neighbour){
         mApiService.favoritesNeighbour(neighbour);
-        if (neighbour.getFavorites() == true){
+        if (neighbour.getFavorites()){
             mFavoritesBtn.setImageResource(R.drawable.ic_star_yellow_24dp);
         }else {
             mFavoritesBtn.setImageResource(R.drawable.ic_star_border_white_24dp);

@@ -22,8 +22,6 @@ public class ListNeighbourActivity extends AppCompatActivity {
     @BindView(R.id.container)
     ViewPager mViewPager;
 
-    private ListNeighbourPagerAdapter mPagerAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,25 +29,11 @@ public class ListNeighbourActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
-        mPagerAdapter = new ListNeighbourPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(mPagerAdapter);
+        ListNeighbourPagerAdapter pagerAdapter = new ListNeighbourPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(pagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-    }
-
-    private void configureViewPagerAndTabs(){
-        //Get ViewPager from layout
-        ViewPager pager = (ViewPager)findViewById(R.id.container);
-        //Set Adapter PageAdapter and glue it together
-        pager.setAdapter(new ListNeighbourPagerAdapter(getSupportFragmentManager()));
-
-        // 1 - Get TabLayout from layout
-        TabLayout tabs= (TabLayout)findViewById(R.id.tabs);
-        // 2 - Glue TabLayout and ViewPager together
-        tabs.setupWithViewPager(pager);
-        // 3 - Design purpose. Tabs have the same width
-        tabs.setTabMode(TabLayout.MODE_FIXED);
     }
 
     @OnClick(R.id.add_neighbour)

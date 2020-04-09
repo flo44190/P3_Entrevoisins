@@ -30,11 +30,10 @@ import butterknife.BindView;
 public class FavoritesFragment extends Fragment {
 
     private NeighbourApiService mApiService;
-    private List<Neighbour> mFavorites;
     private RecyclerView mRecyclerView;
     @BindView(R.id.list_neighbours) RecyclerView recyclerView;
 
-    public static final String EXTRA_BUNDLE_POSITION = "EXTRA_BUNDLE_POSITION";
+    private static final String EXTRA_BUNDLE_POSITION = "EXTRA_BUNDLE_POSITION";
 
 
     /**
@@ -66,11 +65,11 @@ public class FavoritesFragment extends Fragment {
 
 
     /**
-     * Init the List of neighbours
+     * Init the List of favorites
      */
     private void initList() {
-        mFavorites = mApiService.getFavorites();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mFavorites));
+        List<Neighbour> favorites = mApiService.getFavorites();
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(favorites));
     }
 
     @Override
@@ -107,14 +106,11 @@ public class FavoritesFragment extends Fragment {
 
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(mRecyclerView, R.layout.fragment_neighbour)
-                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-                    @Override
-                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        Intent intent = new Intent (getActivity(),info_neighbour.class);
+                .setOnItemClickListener(position -> {
+                    Intent intent = new Intent (getActivity(),info_neighbour.class);
 
-                        intent.putExtra(EXTRA_BUNDLE_POSITION,position);
-                        startActivity(intent);
-                    }
+                    intent.putExtra(EXTRA_BUNDLE_POSITION,position);
+                    startActivity(intent);
                 });
     }
 
