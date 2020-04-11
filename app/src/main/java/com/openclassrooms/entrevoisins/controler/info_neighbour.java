@@ -58,6 +58,8 @@ public class info_neighbour extends AppCompatActivity {
         mApiService = DI.getNeighbourApiService();
         initList();
 
+        // recuperation position du Neighbour
+
         if (intent != null){
             position = intent.getIntExtra(NeighbourFragment.EXTRA_BUNDLE_POSITION,0);
         }
@@ -99,13 +101,22 @@ public class info_neighbour extends AppCompatActivity {
         mNeighbours = mApiService.getNeighbours();
     }
 
+    /**
+     * Affichage Favorie sur floating button
+     * @param neighbour
+     */
+
     private void displayFavorites (Neighbour neighbour){
-        if (neighbour.getFavorites()==true){
+        if (neighbour.getFavorites()){
             mFavoritesBtn.setImageResource(R.drawable.ic_star_yellow_24dp);
         } else {
             mFavoritesBtn.setImageResource(R.drawable.ic_star_border_white_24dp);
         }
     }
+
+    /**
+     * Action modification Favorie
+     */
 
     private View.OnClickListener Favorites = new View.OnClickListener() {
         @Override
