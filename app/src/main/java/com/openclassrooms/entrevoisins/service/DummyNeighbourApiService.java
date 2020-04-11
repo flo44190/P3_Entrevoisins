@@ -58,10 +58,11 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         if (!neighbour.getFavorites()){
                 neighbour.setFavorites(true);
                 favorites.add(neighbour);
-                Log.i("DATA", "favoritesNeighbour: modification favoris true "+neighbour.getName());}
+                //Log.i("DATA", "favoritesNeighbour: modification favoris true "+neighbour.getName());
+        }
         else {
             neighbour.setFavorites(false);
-            Log.i("DATA", "favoritesNeighbour: modification favoris false " +neighbour.getName());
+            //Log.i("DATA", "favoritesNeighbour: modification favoris false " +neighbour.getName());
             favorites.remove(neighbour);
         }
 
