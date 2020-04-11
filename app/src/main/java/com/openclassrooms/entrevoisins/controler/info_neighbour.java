@@ -60,10 +60,10 @@ public class info_neighbour extends AppCompatActivity {
 
         if (intent != null){
             position = intent.getIntExtra(NeighbourFragment.EXTRA_BUNDLE_POSITION,0);
-            DisplayNeighbour(mNeighbours.get(position));
         }
+        DisplayNeighbour(mNeighbours.get(position)); 
 
-        mFavoritesBtn.setOnClickListener(view -> modifFavories(mNeighbours.get(position)));
+        mFavoritesBtn.setOnClickListener(Favorites);
 
     }
 
@@ -89,11 +89,7 @@ public class info_neighbour extends AppCompatActivity {
         mPhone.setText(neighbour.getPhoneNumber());
         mAbout.setText(neighbour.getAboutMe());
         mWeb.setText(neighbour.getWeb());
-        if (neighbour.getFavorites()){
-            mFavoritesBtn.setImageResource(R.drawable.ic_star_yellow_24dp);
-        }else {
-            mFavoritesBtn.setImageResource(R.drawable.ic_star_border_white_24dp);
-        }
+       displayFavorites(neighbour);
     }
 
     /**
@@ -102,16 +98,21 @@ public class info_neighbour extends AppCompatActivity {
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
     }
-    /**
-     * Ajout a la list Favoris et modification du bouton
-     */
 
-    private void modifFavories(Neighbour neighbour){
-        mApiService.favoritesNeighbour(neighbour);
-        if (neighbour.getFavorites()){
+    private void displayFavorites (Neighbour neighbour){
+        if (neighbour.getFavorites()==true){
             mFavoritesBtn.setImageResource(R.drawable.ic_star_yellow_24dp);
-        }else {
+        } else {
             mFavoritesBtn.setImageResource(R.drawable.ic_star_border_white_24dp);
         }
     }
+
+    private View.OnClickListener Favorites = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Neighbour neighbour = mNeighbours.get(position);
+            mApiService.favoritesNeighbour(neighbour);
+            displayFavorites(neighbour);
+        }
+    };
 }
