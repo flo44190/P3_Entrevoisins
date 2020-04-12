@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -114,7 +115,7 @@ public class info_neighbour extends AppCompatActivity {
         }
     }
 
-    /**
+    /**                                     
      * Action modification Favorie
      */
 

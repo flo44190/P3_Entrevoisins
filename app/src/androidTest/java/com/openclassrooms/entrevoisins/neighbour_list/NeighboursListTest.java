@@ -73,6 +73,10 @@ public class NeighboursListTest {
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
     }
 
+    /**
+     * Quand je clique sur un item, je vois ces details
+     */
+
     @Test
     public void myNeighboursListGoToInfoNeighbours() {
         // Click sur Neighbours Jack
