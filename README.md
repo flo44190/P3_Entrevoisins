@@ -10,8 +10,8 @@ Entrevoisins est une application qui permet à des personnes d’un même quarti
 
 # Project Status
 
-- ![Build](https://img.shields.io/badge/Build-passing-green)
-- ![Unit Test](https://img.shields.io/badge/Unit%20Test-Succes-green)
+- ![Build](https://img.shields.io/badge/Build-finish-green)
+- ![Unit Test](https://img.shields.io/badge/Unit%20Test-passing-green)
 - ![Instru Test](https://img.shields.io/badge/Instru%20Test-passing-green) 
 
 # Build With
