@@ -100,13 +100,18 @@ public class NeighboursListTest {
     @Test
     public void favoritesListCheckIn() {
         // Verification que la list des favoris est vide
-        onView(ViewMatchers.withId(R.id.list_favorites)).check(withItemCount(ITEMS_FAVORITES));
+        onView(ViewMatchers.withId(R.id.list_favorites))
+                .check(withItemCount(ITEMS_FAVORITES));
         // Ajoue d'un utilisateur au Favoris
-        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(1,click()));
-        onView(ViewMatchers.withId(R.id.activity_info_neighbour_favorites_btn)).perform(click());
-        onView(ViewMatchers.withId(R.id.toolbar)).perform(pressBack());
+        onView(ViewMatchers.withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1,click()));
+        onView(ViewMatchers.withId(R.id.activity_info_neighbour_favorites_btn))
+                .perform(click());
+        onView(ViewMatchers.withId(R.id.toolbar))
+                .perform(pressBack());
         // Verification que la list des favoris n'a qu'un voisins
-        onView(ViewMatchers.withId(R.id.list_favorites)).check(withItemCount(ITEMS_FAVORITES+1));
+        onView(ViewMatchers.withId(R.id.list_favorites))
+                .check(withItemCount(ITEMS_FAVORITES+1));
     }
 
 }
