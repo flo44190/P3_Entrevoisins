@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.neighbour_list;
+package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 
 import android.support.test.espresso.ViewInteraction;
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -33,13 +32,13 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class Ajoue_Verif_Favorie_test {
+public class ListFavoriteTest {
 
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityTestRule = new ActivityTestRule<>(ListNeighbourActivity.class);
 
     @Test
-    public void listNeighbourActivityTest() {
+    public void listFavoriteTest() {
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),
                         withParent(withId(R.id.container))));
@@ -56,7 +55,7 @@ public class Ajoue_Verif_Favorie_test {
         floatingActionButton.perform(click());
 
         ViewInteraction appCompatImageButton = onView(
-                allOf(withContentDescription("Revenir en haut de la page"),
+                allOf(withContentDescription("Navigate up"),
                         childAtPosition(
                                 allOf(withId(R.id.toolbar),
                                         childAtPosition(

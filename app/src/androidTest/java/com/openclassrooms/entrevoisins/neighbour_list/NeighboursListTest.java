@@ -1,6 +1,7 @@
 
 package com.openclassrooms.entrevoisins.neighbour_list;
 
+import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
@@ -8,6 +9,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.RecyclerView;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
 
@@ -16,8 +18,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.pressBack;
+import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
@@ -36,6 +42,7 @@ public class NeighboursListTest {
 
     // This is fixed
     private static int ITEMS_COUNT = 12;
+    private static int ITEMS_FAVORITES = 0;
 
     private ListNeighbourActivity mActivity;
 
@@ -86,4 +93,20 @@ public class NeighboursListTest {
         onView(ViewMatchers.withId(R.id.activity_info_neighbour_name2_tkt))
                 .check(matches(withText("Jack")));
     }
+    /**
+     * L’onglet Favoris n’affiche que les voisins marqués
+     */
+
+    @Test
+    public void favoritesListCheckIn() {
+        // Verification que la list des favoris est vide
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(withItemCount(ITEMS_FAVORITES));
+        // Ajoue d'un utilisateur au Favoris
+        onView(ViewMatchers.withId(R.id.list_neighbours)).perform(RecyclerViewActions.actionOnItemAtPosition(1,click()));
+        onView(ViewMatchers.withId(R.id.activity_info_neighbour_favorites_btn)).perform(click());
+        onView(ViewMatchers.withId(R.id.toolbar)).perform(pressBack());
+        // Verification que la list des favoris n'a qu'un voisins
+        onView(ViewMatchers.withId(R.id.list_favorites)).check(withItemCount(ITEMS_FAVORITES+1));
+    }
+
 }
